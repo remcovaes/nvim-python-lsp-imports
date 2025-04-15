@@ -196,7 +196,7 @@ M.setup = function()
     generator = {
       fn = function(context)
         local actions = {}
-        local imports = require("config.lspimport").import()
+        local imports = M.get_import_suggestions()
 
         if imports then
           for _, import in ipairs(imports) do
