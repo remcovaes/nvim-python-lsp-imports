@@ -1,47 +1,25 @@
-# A Neovim Plugin Template
+# Nvim-python-lsp-imports
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ellisonleao/nvim-plugin-template/lint-test.yml?branch=main&style=for-the-badge)
-![Lua](https://img.shields.io/badge/Made%20with%20Lua-blueviolet.svg?style=for-the-badge&logo=lua)
+Aims to bring lsp import functionality to Neovim code action for Python.
 
-A template repository for Neovim plugins.
+## Setup
 
-## Using it
+For Lazy:
+```lua
+return {
+	"nvimtools/none-ls.nvim",
+	config = function()
+		local lspImporSource = require("python-lsp-imports").setup()
 
-Via `gh`:
-
+		require("null-ls").setup({
+			sources = {
+				lspImporSource,
+			},
+		})
+	end,
+}
 ```
-$ gh repo create my-plugin -p ellisonleao/nvim-plugin-template
-```
 
-Via github web page:
+The plugin works by pretending to be an LSP that has Code action capabilities.
+The thing is does is check for if a symbol under the cursor is undefined, and look for imports if code action is requested.
 
-Click on `Use this template`
-
-![](https://docs.github.com/assets/cb-36544/images/help/repository/use-this-template-button.png)
-
-## Features and structure
-
-- 100% Lua
-- Github actions for:
-  - running tests using [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) and [busted](https://olivinelabs.com/busted/)
-  - check for formatting errors (Stylua)
-  - vimdocs autogeneration from README.md file
-  - luarocks release (LUAROCKS_API_KEY secret configuration required)
-
-### Plugin structure
-
-```
-.
-├── lua
-│   ├── plugin_name
-│   │   └── module.lua
-│   └── plugin_name.lua
-├── Makefile
-├── plugin
-│   └── plugin_name.lua
-├── README.md
-├── tests
-│   ├── minimal_init.lua
-│   └── plugin_name
-│       └── plugin_name_spec.lua
-```
