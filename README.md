@@ -9,11 +9,11 @@ For Lazy:
 return {
 	"nvimtools/none-ls.nvim",
 	config = function()
-		local lspImporSource = require("python-lsp-imports").setup()
+		local lspImportSource = require("python-lsp-imports").setup()
 
 		require("null-ls").setup({
 			sources = {
-				lspImporSource,
+				lspImportSource,
 			},
 		})
 	end,
